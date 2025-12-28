@@ -7,6 +7,7 @@ class ClockConfig:
     end: pd.Timestamp
     freq: str            # "1D", "1H", "5min", etc.
     tz: str | None = None
+    keep_weekends: bool = True
 
 
 class Clock:
@@ -18,9 +19,15 @@ class Clock:
             tz=config.tz
         )
 
+        # Filter out weekends if needed
+        if not config.keep_weekends:
+            self._timestamps = self._timestamps[
+                self._timestamps.dayofweek < 5
+            ]
+
         if len(self._timestamps) == 0:
             raise ValueError("Clock has no timestamps")
-
+        
         self.i = -1
         self.now = None
         self._n = len(self._timestamps)
@@ -61,7 +68,8 @@ if __name__ == "__main__":
         start=pd.Timestamp("2025-01-01"),
         end=pd.Timestamp("2025-12-22"),
         freq="1D",
-        tz="UTC"
+        tz="UTC",
+        keep_weekends=False,
     )
 
     clock = Clock(config)
