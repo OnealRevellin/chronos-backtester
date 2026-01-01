@@ -162,4 +162,3 @@ if __name__ == "__main__":
     print(f"A quantity ≈ {qA:.6f}")
     print(f"B quantity ≈ {qB:.6f}")
     print("(They should be equal in absolute value)")
-""
