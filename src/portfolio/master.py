@@ -78,7 +78,7 @@ class MasterPorfolio:
         if lot_size <= 0.0:
             raise ValueError(f"Invalid lot_size for symbol '{sym}': {lot_size}")
         
-        return float(lot_size * qty)
+        return float((round(qty) / lot_size) * lot_size)
 
     # -----------------------------
     # Oder generation
