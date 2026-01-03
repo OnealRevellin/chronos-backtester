@@ -63,6 +63,10 @@ class Clock:
         self.i = -1
         self.now = None
 
+    def has_next(self) -> bool:
+        """check if there is a next timestamp."""
+        return self.i + 1 < self._n
+
 if __name__ == "__main__":
     config = ClockConfig(
         start=pd.Timestamp("2025-01-01"),
