@@ -6,7 +6,7 @@ from ..backtesting.context import Context, StrategyOutput
 
 class Strategy(ABC):
     @abstractmethod
-    def generate_signals(
+    def on_data(
         self,
         ctx: Context,
     ) -> StrategyOutput:

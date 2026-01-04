@@ -13,7 +13,7 @@ class AlwaysLong(Strategy):
         self._symbol = symbol
         self._weight = float(weight)
 
-    def generate_signals(
+    def on_data(
         self,
         ctx: Context,
     ) -> StrategyOutput:

@@ -18,7 +18,7 @@ class StrategyNode:
     enabled: bool = True
 
 
-    def generate_signals(
+    def on_data(
         self,
         ctx: Context,
     ) -> StrategyOutput:
@@ -28,11 +28,11 @@ class StrategyNode:
         if not self.enabled:
             return StrategyOutput.empty()
         
-        out = self.strategy.generate_signals(ctx)
+        out = self.strategy.on_data(ctx)
 
         if not isinstance(out, StrategyOutput):
             raise TypeError(
-                f"StrategyNode.generate_signals() must return StrategyOutput, got {type(out)}"
+                f"StrategyNode.on_data() must return StrategyOutput, got {type(out)}"
             )
         
         return out
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     ctx.update_market({"ES": Bar(open=1, high=1, low=1, close=1)})
 
     node = StrategyNode(id="always_long", strategy=AlwaysLong("ES", 1.0))
-    out = node.generate_signals(ctx)
+    out = node.on_data(ctx)
     assert out.weights["ES"] == 1.0
     print("StrategyNode smoke test passed.")
     print(out)
