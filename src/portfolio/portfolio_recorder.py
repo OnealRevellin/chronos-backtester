@@ -1,7 +1,7 @@
 import pandas as pd
 from typing import Dict
 from ..backtesting.context import Context
-from .master import MasterPorfolio
+from ..portfolio.master import MasterPortfolio
 
 
 class PortfolioRecorder:
@@ -16,7 +16,7 @@ class PortfolioRecorder:
     def record(
         self,
         ts: pd.Timestamp,
-        portfolio: MasterPorfolio,
+        portfolio: MasterPortfolio,
         ctx: Context
     ) -> None:
         self._positions[ts] = portfolio.positions.copy()
@@ -25,3 +25,14 @@ class PortfolioRecorder:
             "total_equity": portfolio.equity(ctx),
         }
 
+    def positions_df(self) -> pd.DataFrame:
+        return pd.DataFrame.from_dict(self._positions, orient="index").fillna(0.0).sort_index()
+
+    def metrics_df(self) -> pd.DataFrame:
+        df = pd.DataFrame.from_dict(self._metrics, orient="index").sort_index()
+        df["returns"] = df["total_equity"].pct_change().fillna(0.0)
+        return df
+
+    def to_parquet(self, path: str):
+        self.positions_df().to_parquet(path + ".positions.parquet")
+        self.metrics_df().to_parquet(path + ".metrics.parquet")
