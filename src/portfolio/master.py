@@ -18,6 +18,7 @@ class MasterPortfolio:
 
     __slots__ = (
         "_cash",
+        "_fees_paid",
         "_positions",
         "_instrument_rules",
         "_default_order_type",
@@ -33,6 +34,7 @@ class MasterPortfolio:
         default_time_in_force: TimeInForce = TimeInForce.DAY
     ):
         self._cash = float(initial_cash)
+        self._fees_paid = 0.0
         self._positions: Dict[str, float] = {}
         self._instrument_rules: Dict[str, Dict[str, float | bool]] = instrument_rules
         self._default_order_type: OrderType = default_order_type
@@ -214,6 +216,7 @@ class MasterPortfolio:
 
             self._cash -= fill.quantity * fill.price
             self._cash -= fill.fee
+            self._fees_paid += fill.fee
 
             self._positions[fill.symbol] = self._positions.get(fill.symbol, 0.0) + fill.quantity
 
