@@ -234,7 +234,10 @@ class MasterPortfolio:
             self._cash -= fill.fee
             self._fees_paid += fill.fee
 
-            self._positions[fill.symbol] = self._positions.get(fill.symbol, 0.0) + fill.quantity
+            self._positions[fill.symbol] = (
+                self._positions.get(fill.symbol, 0.0) 
+                + fill.quantity
+            )
 
             if abs(self._positions[fill.symbol]) < 1e-12:
                 del self._positions[fill.symbol]
