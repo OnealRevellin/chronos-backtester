@@ -191,22 +191,26 @@ class BacktestingEngine:
 
             fills = self._broker.execute_orders(orders, self._ctx)
 
-            if self._cfg.log_fills and fills: #and do_log_this_tick:
+            if fills:
                 tick_fees = 0.0
-                self._log(f"\n[{ts}] FILLS | count={len(fills)}")
                 for f in fills:
                     side = "BUY" if f.quantity > 0 else "SELL"
                     notional = abs(f.quantity * f.price)
                     fee = float(getattr(f, "fee", 0.0))
                     tick_fees += fee
-                    self._log(
-                        f"  {side:4s} {abs(f.quantity):>12.6f} {f.symbol:12s} "
-                        f"@ {f.price:>12.6f} notional={notional:>14,.2f} fee={fee:>10.2f}"
-                    )
+                    if self._cfg.log_fills:
+                        self._log(
+                            f"  {side:4s} {abs(f.quantity):>12.6f} {f.symbol:12s} "
+                            f"@ {f.price:>12.6f} notional={notional:>14,.2f} fee={fee:>10.2f}"
+                        )
                 self._cum_fees += tick_fees
-                self._log(f"  Fees this tick: {tick_fees:,.2f} | Cumulative fees: {self._cum_fees:,.2f}")
+                if self._cfg.log_fills:
+                    self._log(f"\n[{ts}] FILLS | count={len(fills)}")
+                    self._log(
+                        f"  Fees this tick: {tick_fees:,.2f} | Cumulative fees: {self._cum_fees:,.2f}"
+                        )
 
-            self._portfolio.apply_fills(fills)
+                self._portfolio.apply_fills(fills)
 
             if self._cfg.log_equity and do_log_this_tick or not clock.has_next():
                 eq = self._portfolio.equity(self._ctx)
