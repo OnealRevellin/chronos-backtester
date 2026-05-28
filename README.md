@@ -15,6 +15,25 @@ The project is designed around:
 
 ---
 
+# Example Output (MSCI World ETF (ACC), long only $1M from 2012-12-25 to 2026-04-27)
+
+```text
+================================================================================
+BACKTEST SUMMARY
+================================================================================
+Initial equity: 1,000,000.00
+Final equity:   4,352,148.09
+PnL:            3,352,148.09 (+335.21%)
+Cumulative fees:10,719.55
+Final cash:     4,352,148.09
+Final positions:{}
+```
+
+Equity line:
+![alt text](<msci world long only eq line.png>)
+
+---
+
 # Architecture Overview
 
 The backtesting pipeline is:
@@ -333,25 +352,6 @@ The engine also computes:
 * Final Equity
 * PnL
 * Fees
-
----
-
-# Example Output (MSCI World ETF (ACC), long only $1M from 2012-12-25 to 2026-04-27)
-
-```text
-================================================================================
-BACKTEST SUMMARY
-================================================================================
-Initial equity: 1,000,000.00
-Final equity:   4,352,148.09
-PnL:            3,352,148.09 (+335.21%)
-Cumulative fees:10,719.55
-Final cash:     4,352,148.09
-Final positions:{}
-```
-
-Equity line:
-![alt text](<msci world long only eq line.png>)
 
 ---
 
