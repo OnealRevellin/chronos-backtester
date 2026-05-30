@@ -190,15 +190,15 @@ class BacktestingEngine:
                     
                     self._log(
                         f"  {side:4s} {abs(o.quantity):>12.6f} {o.symbol:12s} "
-                        f"@ {px:>12.6f} notional={notional:>14,.2f} "
-                        f"type={getattr(o, 'order_type', None)} tif={getattr(o, 'time_in_force', None)}"
+                        f"@ {px:>12.6f} | notional={notional:>14,.2f} "
+                        f"| type={getattr(o, 'order_type', None)} | tif={getattr(o, 'time_in_force', None)}"
                     )
 
                 if self._cfg.log_allocation:
                     gross = sum(abs(w) for w in alloc.values()) if alloc else 0.0
                     net = sum(alloc.values()) if alloc else 0.0
                     self._log(
-                        f"\n[{ts}] ALLOCATION | n={len(alloc)} gross={gross:.6f} net={net:.6f}"
+                        f"\n[{ts}] ALLOCATION | n={len(alloc)} | gross={gross:.6f} | net={net:.6f}"
                     )
                     for sym, w in sorted(alloc.items()):
                         self._log(f"  {sym:12s} {w:+.6f}")
@@ -207,6 +207,8 @@ class BacktestingEngine:
 
             if fills:
                 tick_fees = 0.0
+                if self._cfg.log_fills:
+                    self._log(f"\n[{ts}] FILLS | count={len(fills)}")
                 for f in fills:
                     side = "BUY" if f.quantity > 0 else "SELL"
                     notional = abs(f.quantity * f.price)
@@ -215,11 +217,10 @@ class BacktestingEngine:
                     if self._cfg.log_fills:
                         self._log(
                             f"  {side:4s} {abs(f.quantity):>12.6f} {f.symbol:12s} "
-                            f"@ {f.price:>12.6f} notional={notional:>14,.2f} fee={fee:>10.2f}"
+                            f"@ {f.price:>12.6f} | notional={notional:>14,.2f} | fee={fee:>10.2f}"
                         )
                 self._cum_fees += tick_fees
                 if self._cfg.log_fills:
-                    self._log(f"\n[{ts}] FILLS | count={len(fills)}")
                     self._log(
                         f"  Fees this tick: {tick_fees:,.2f} | Cumulative fees: {self._cum_fees:,.2f}"
                         )

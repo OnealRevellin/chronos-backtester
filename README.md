@@ -15,9 +15,30 @@ The project is designed around:
 
 ---
 
-# Example Output (MSCI World ETF (ACC), long only $1M from 2012-12-25 to 2026-04-27)
+# Example Output
 
 ```text
+Below example is a long only position (lumpsum) of $1M on MSCI World ETF (ACC) taken from 2012-12-25 to 2026-04-27.
+================================================================================
+BACKTEST START
+================================================================================
+[2012-12-25 17:30:00] Initial equity: 1,000,000.00
+
+[2012-12-25 17:30:00] ORDERS | count=1
+  BUY    292.000000 MSCI_WORLD_NET_USD @  3419.360000 | notional=    998,453.12 | type=market | tif=day
+
+[2012-12-25 17:30:00] FILLS | count=1
+  BUY    292.000000 MSCI_WORLD_NET_USD @  3419.360000 | notional=    998,453.12 | fee=   1996.91
+  Fees this tick: 1,996.91 | Cumulative fees: 1,996.91
+
+[2026-04-27 17:30:00] ORDERS | count=1
+  SELL   292.000000 MSCI_WORLD_NET_USD @ 14936.030000 | notional=  4,361,320.76 | type=market | tif=day
+
+[2026-04-27 17:30:00] FILLS | count=1
+  SELL   292.000000 MSCI_WORLD_NET_USD @ 14936.030000 | notional=  4,361,320.76 | fee=   8722.64
+  Fees this tick: 8,722.64 | Cumulative fees: 10,719.55
+[2026-04-27 17:30:00] EQUITY: 4,352,148.09 | cash=4,352,148.09 | positions=0
+
 ================================================================================
 BACKTEST SUMMARY
 ================================================================================
