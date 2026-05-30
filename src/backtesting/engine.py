@@ -335,15 +335,16 @@ if __name__ == "__main__":
         #     avg_window=14,
         #     long_threshold=0.03,
         #     short_threshold=-0.03,
-        #     side_constraint=1,
+        #     side_constraint=0,
         #     weight=1.0
         # ),
         Momentum(
             symbol="MSCI_WORLD_NET_USD", 
-            avg_window=5,
-            long_threshold=0.02,
-            short_threshold=-0.02,
-            side_constraint=-1,
+            avg_window=14,
+            long_threshold=0.03,
+            short_threshold=-0.03,
+            side_constraint=1,
+            keep_expo_in_range=True,
             weight=1.0
         )
     ]
