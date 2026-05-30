@@ -18,7 +18,7 @@ The project is designed around:
 # Example Output
 
 ```text
-Below example is a long only position (lumpsum) of $1M on MSCI World ETF (ACC) taken from 2012-12-25 to 2026-04-27.
+## long only position (lumpsum) on MSCI World ETF (ACC).
 ================================================================================
 BACKTEST START
 ================================================================================
@@ -49,18 +49,73 @@ Cumulative fees:10,719.55
 Final cash:     4,352,148.09
 Final positions:{}
 
---------------------------------------------------------------------------------
+================================================================================
 PERFORMANCE METRICS
---------------------------------------------------------------------------------
+================================================================================
 CAGR:           11.68%
 Max Drawdown:   -34.04%
-Sharpe Ratio:   0.5411
+Sharpe Ratio:   0.5411 (risk-free rate fixed to 4%)
 ```
 
 Equity line:
 ![alt text](<msci world long only eq line.png>)
 
 ---
+
+
+```text
+## Mean reverting strategy (our params: price > 14d avg + 3% => Short position, 
+## price < 14d avg - 3% => Long position) on MSCI World ETF (ACC).
+================================================================================
+BACKTEST SUMMARY
+================================================================================
+Initial equity: 1,000,000.00
+Final equity:   298,017.11
+PnL:            -701,982.89 (-70.20%)
+Cumulative fees:138,820.35
+Final cash:     298,017.11
+Final positions:{}
+
+================================================================================
+PERFORMANCE METRICS
+================================================================================
+CAGR:           -8.68%
+Max Drawdown:   -76.82%
+Sharpe Ratio:   -0.8404 (risk-free rate fixed to 4%)
+```
+
+Equity line:
+![alt text](<msci world mean_reversion long_short eq line.png>)
+
+---
+
+
+```text
+## Momentum strategy (our params: price > 14d avg + 3% => Long position, 
+## price < 14d avg - 3% => Short position) on MSCI World ETF (ACC).
+================================================================================
+BACKTEST SUMMARY
+================================================================================
+Initial equity: 1,000,000.00
+Final equity:   298,017.11
+PnL:            -701,982.89 (-70.20%)
+Cumulative fees:138,820.35
+Final cash:     298,017.11
+Final positions:{}
+
+================================================================================
+PERFORMANCE METRICS
+================================================================================
+CAGR:           -8.68%
+Max Drawdown:   -76.82%
+Sharpe Ratio:   -0.8404 (risk-free rate fixed to 4%)
+```
+
+Equity line:
+![alt text](<msci world momentum long_short eq line.png>)
+
+---
+
 
 # Architecture Overview
 
