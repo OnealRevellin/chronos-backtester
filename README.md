@@ -17,8 +17,8 @@ The project is designed around:
 
 # Example Output
 
-```text
 ## long only position (lumpsum) on MSCI World ETF (ACC).
+```text
 ================================================================================
 BACKTEST START
 ================================================================================
@@ -62,10 +62,9 @@ Equity line:
 
 ---
 
-
-```text
 ## Mean reverting strategy (our params: price > 14d avg + 3% => Short position, 
 ## price < 14d avg - 3% => Long position) on MSCI World ETF (ACC).
+```text
 ================================================================================
 BACKTEST SUMMARY
 ================================================================================
@@ -89,10 +88,9 @@ Equity line:
 
 ---
 
-
-```text
 ## Momentum strategy (our params: price > 14d avg + 3% => Long position, 
 ## price < 14d avg - 3% => Short position) on MSCI World ETF (ACC).
+```text
 ================================================================================
 BACKTEST SUMMARY
 ================================================================================
