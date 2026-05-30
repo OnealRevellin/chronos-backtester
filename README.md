@@ -62,8 +62,11 @@ Equity line:
 
 ---
 
-## Mean reverting strategy (our params: price > 14d avg + 3% => Short position, 
-## price < 14d avg - 3% => Long position) on MSCI World ETF (ACC).
+## Mean Reversion Strategy on MSCI World ETF (ACC)
+
+**Parameters**
+- Short when price > 14-day moving average + 3%
+- Long when price < 14-day moving average - 3%
 ```text
 ================================================================================
 BACKTEST SUMMARY
@@ -88,8 +91,11 @@ Equity line:
 
 ---
 
-## Momentum strategy (our params: price > 14d avg + 3% => Long position, 
-## price < 14d avg - 3% => Short position) on MSCI World ETF (ACC).
+## Trend following (Momentum) Strategy on MSCI World ETF (ACC)
+
+**Parameters**
+- Long when price > 14-day moving average + 3%
+- Short when price < 14-day moving average - 3%
 ```text
 ================================================================================
 BACKTEST SUMMARY
