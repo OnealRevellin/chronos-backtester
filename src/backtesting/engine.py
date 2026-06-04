@@ -158,7 +158,6 @@ class BacktestingEngine:
                 strategy_outputs,
                 self._ctx,
             )
-            print(alloc)
 
             do_log_this_tick = (
                 (self._cfg.log_every_n > 0) 
